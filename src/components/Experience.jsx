@@ -1,7 +1,7 @@
 import Field from "./Field";
 import { useState } from "react";
 
-function Experience({ isSubmit }) {
+function Experience({ isSubmit, handleDataSubmit }) {
   const [experienceList, setExperienceList] = useState([
     {
       id: 0,
@@ -12,6 +12,10 @@ function Experience({ isSubmit }) {
       toDate: "",
     },
   ]);
+
+  if (isSubmit == true) {
+    handleDataSubmit(experienceList);
+  }
 
   const addExperience = () => {
     setExperienceList([
@@ -76,12 +80,14 @@ function Experience({ isSubmit }) {
             id="comp-name"
             formId={item.id}
             name="Company Name"
+            required={true}
             onInputChange={handleChange}
           />
           <Field
             id="pos-title"
             formId={item.id}
             name="Position Title"
+            required={true}
             onInputChange={handleChange}
           />
           <div className="text-field">

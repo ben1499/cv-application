@@ -1,10 +1,14 @@
 import Field from "./Field";
 import { useState } from "react";
 
-function Education({ isSubmit }) {
+function Education({ isSubmit, handleDataSubmit }) {
   const [educationList, setEducationList] = useState([
     { id: 0, institutionName: "", courseName: "", dateOfCompletion: "" },
   ]);
+
+  if (isSubmit == true) {
+    handleDataSubmit(educationList);
+  }
 
   const addEducation = () => {
     setEducationList([
@@ -15,7 +19,6 @@ function Education({ isSubmit }) {
 
   const removeEducation = () => {
     const filteredList = educationList.filter((item) => item.id == 0);
-    console.log(filteredList);
     setEducationList(filteredList);
   };
 
@@ -55,12 +58,14 @@ function Education({ isSubmit }) {
             id="inst-name"
             formId={item.id}
             name="Institution Name"
+            required={true}
             onInputChange={handleChange}
           />
           <Field
             id="course-name"
             formId={item.id}
             name="Course Name"
+            required={true}
             onInputChange={handleChange}
           />
           <Field
