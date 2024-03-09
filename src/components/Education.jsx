@@ -1,54 +1,10 @@
 import Field from "./Field";
 import { useState } from "react";
 
-function Education({ isSubmit, handleDataSubmit }) {
-  const [educationList, setEducationList] = useState([
-    { id: 0, institutionName: "", courseName: "", dateOfCompletion: "" },
-  ]);
-
-  if (isSubmit == true) {
-    handleDataSubmit(educationList);
-  }
-
-  const addEducation = () => {
-    setEducationList([
-      ...educationList,
-      { id: 1, institutionName: "", courseName: "", dateOfCompletion: "" },
-    ]);
-  };
-
-  const removeEducation = () => {
-    const filteredList = educationList.filter((item) => item.id == 0);
-    setEducationList(filteredList);
-  };
-
-  const handleChange = (e) => {
-    // If first form
-    if (e.target.dataset.id == 0) {
-      // const firstItem = educationList.filter((item) => item.id == 0);
-      const firstItem = educationList[0];
-      const secondItem = educationList.filter((item) => item.id == 1);
-      if (e.target.id == "inst-name") {
-        firstItem.institutionName = e.target.value;
-      } else if (e.target.id == "course-name") {
-        firstItem.courseName = e.target.value;
-      } else {
-        firstItem.yearOfCompletion = e.target.value;
-      }
-      setEducationList([firstItem, ...secondItem]);
-    } else {
-      const firstItem = educationList[0];
-      const secondItem = educationList[1];
-      if (e.target.id == "inst-name") {
-        secondItem.institutionName = e.target.value;
-      } else if (e.target.id == "course-name") {
-        secondItem.courseName = e.target.value;
-      } else {
-        secondItem.yearOfCompletion = e.target.value;
-      }
-      setEducationList([firstItem, secondItem]);
-    }
-  };
+function Education({ educationList, onChange, onAdd, onRemove }) {
+  // if (isSubmit == true) {
+  //   handleDataSubmit(educationList);
+  // }
 
   return (
     <div>
@@ -58,30 +14,33 @@ function Education({ isSubmit, handleDataSubmit }) {
             id="inst-name"
             formId={item.id}
             name="Institution Name"
+            value={item.institutionName}
             required={true}
-            onInputChange={handleChange}
+            onInputChange={onChange}
           />
           <Field
             id="course-name"
             formId={item.id}
             name="Course Name"
+            value={item.courseName}
             required={true}
-            onInputChange={handleChange}
+            onInputChange={onChange}
           />
           <Field
             id="doc"
             formId={item.id}
             type="date"
             name="Date of Completion"
-            onInputChange={handleChange}
+            value={item.dateOfCompletion}
+            onInputChange={onChange}
           />
           {item.id == 1 ? (
-            <button onClick={removeEducation}>Remove</button>
+            <button onClick={onRemove}>Remove</button>
           ) : null}
         </div>
       ))}
       {educationList.length == 1 ? (
-        <button onClick={addEducation}>Add New</button>
+        <button onClick={onAdd}>Add New</button>
       ) : null}
     </div>
   );

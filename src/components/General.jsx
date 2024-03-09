@@ -1,31 +1,18 @@
 import Field from "./Field";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-function General({ isSubmit, handleDataSubmit }) {
-  const [formState, setFormState] = useState({
-    name: "",
-    email: "",
-    phone_number: "",
-  });
+function General({ generalData, onChange }) {
 
-  if (isSubmit == true) {
-    handleDataSubmit(formState);
-  }
-
-  const handleChange = (e) => {
-    if (e.target.id == "name")
-      setFormState({ ...formState, name: e.target.value });
-    else if (e.target.id == "email")
-      setFormState({ ...formState, email: e.target.value });
-    else setFormState({ ...formState, phone_number: e.target.value });
-  };
+  // if (isSubmit == true) {
+  //   handleDataSubmit(formState);
+  // }
 
   return (
-    <div>
+    <div className="form-section">
       <h2>General Information</h2>
-      <Field id="name" name="Name" required={true} onInputChange={handleChange} />
-      <Field id="email" name="Email" onInputChange={handleChange} />
-      <Field id="phone" name="Phone Number" onInputChange={handleChange} />
+      <Field id="name" name="Name" value={generalData.name} required={true} onInputChange={onChange} />
+      <Field id="email" name="Email"  value={generalData.email} onInputChange={onChange} />
+      <Field id="phone" name="Phone Number" value={generalData.phone_number} onInputChange={onChange} />
     </div>
   );
 }

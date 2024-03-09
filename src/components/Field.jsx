@@ -2,6 +2,7 @@ function Field({
   id,
   type = "text",
   name,
+  value,
   formId = "",
   required = false,
   onInputChange,
@@ -18,6 +19,7 @@ function Field({
       <input
         type={type}
         id={id}
+        value={value}
         data-id={formId}
         required={required}
         onChange={onInputChange}
