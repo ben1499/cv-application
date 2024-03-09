@@ -9,7 +9,10 @@ function Education({ educationList, onChange, onAdd, onRemove }) {
   return (
     <div>
       {educationList.map((item) => (
-        <div key={item.id} style={{ marginBottom: "16px" }}>
+        <div key={item.id} style={{ marginBottom: "12px" }}>
+          {item.id == 1 ? (
+            <div style={{ borderBottom: "1px solid #94a3b8" }}></div>
+          ) : null}
           <Field
             id="inst-name"
             formId={item.id}
@@ -35,12 +38,20 @@ function Education({ educationList, onChange, onAdd, onRemove }) {
             onInputChange={onChange}
           />
           {item.id == 1 ? (
-            <button onClick={onRemove}>Remove</button>
+            <button
+              className="form-inner-btn"
+              style={{ marginTop: "10px" }}
+              onClick={onRemove}
+            >
+              Remove
+            </button>
           ) : null}
         </div>
       ))}
       {educationList.length == 1 ? (
-        <button onClick={onAdd}>Add New</button>
+        <button className="form-inner-btn" onClick={onAdd}>
+          Add New
+        </button>
       ) : null}
     </div>
   );

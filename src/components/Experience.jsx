@@ -2,7 +2,6 @@ import Field from "./Field";
 import { useState } from "react";
 
 function Experience({ experienceList, onChange, onAdd, onRemove }) {
-
   // if (isSubmit == true) {
   //   handleDataSubmit(experienceList);
   // }
@@ -10,7 +9,10 @@ function Experience({ experienceList, onChange, onAdd, onRemove }) {
   return (
     <div>
       {experienceList.map((item) => (
-        <div key={item.id} style={{ marginBottom: "16px" }}>
+        <div key={item.id} style={{ marginBottom: "12px" }}>
+          {item.id == 1 ? (
+            <div style={{ borderBottom: "1px solid #94a3b8" }}></div>
+          ) : null}
           <Field
             id="comp-name"
             formId={item.id}
@@ -27,7 +29,7 @@ function Experience({ experienceList, onChange, onAdd, onRemove }) {
             required={true}
             onInputChange={onChange}
           />
-          <div className="text-field">
+          <div className="text-field" style={{ marginTop: "6px" }}>
             <label htmlFor="responsibility">Responsibilities</label>
             <textarea
               data-id={item.id}
@@ -37,7 +39,7 @@ function Experience({ experienceList, onChange, onAdd, onRemove }) {
               onChange={onChange}
               id="responsibility"
               cols="30"
-              rows="5"
+              rows="4"
             ></textarea>
           </div>
           <Field
@@ -57,12 +59,20 @@ function Experience({ experienceList, onChange, onAdd, onRemove }) {
             onInputChange={onChange}
           />
           {item.id == 1 ? (
-            <button onClick={onRemove}>Remove</button>
+            <button
+              className="form-inner-btn"
+              style={{ marginTop: "10px" }}
+              onClick={onRemove}
+            >
+              Remove
+            </button>
           ) : null}
         </div>
       ))}
       {experienceList.length == 1 ? (
-        <button onClick={onAdd}>Add New</button>
+        <button className="form-inner-btn" onClick={onAdd}>
+          Add New
+        </button>
       ) : null}
     </div>
   );

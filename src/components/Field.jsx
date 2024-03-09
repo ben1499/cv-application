@@ -13,6 +13,7 @@ function Field({
         display: "flex",
         flexDirection: "column",
         alignItems: "flex-start",
+        marginTop: "6px"
       }}
     >
       <label htmlFor={id}>{name} {required ? '*' : null}</label>

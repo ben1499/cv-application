@@ -62,7 +62,6 @@ function App() {
   };
 
   const handleEdit = () => {
-    console.log(generalData);
     setShowDisplay(false);
   };
 
@@ -220,11 +219,13 @@ function App() {
                 />
               </div>
             </form>
-            <button onClick={resetForm}>Reset Form</button>
-            <button onClick={handleSubmit}>Submit</button>
+            <div className="action-btns">
+              <button onClick={resetForm}>Reset Form</button>
+              <button onClick={handleSubmit}>Submit</button>
+            </div>
           </div>
         ) : (
-          <>
+          <div className="display-container">
             <button className="edit-btn" onClick={handleEdit}>
               Edit
             </button>
@@ -233,7 +234,7 @@ function App() {
               educationData={educationData}
               experienceData={experienceData}
             />
-          </>
+          </div>
         )}
       </main>
     </>
